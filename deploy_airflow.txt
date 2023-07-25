@@ -1,0 +1,26 @@
+airflow_mssql-airflow-webserver-1 apache/airflow:2.6.3 8080
+airflow_mssql-airflow-scheduler-1 apache/airflow:2.6.3
+airflow_mssql-airflow-triggerer-1 apache/airflow:2.6.3
+airflow_mssql-postgres-1 postgres:13 5432
+
+
+
+
+docker run -it --name "airflow_mssql-postgres-1"  -e POSTGRES_PASSWORD=airflow -e POSTGRES_USER=airflow -e POSTGRES_NAME=airflow -p 5432:5432 -d  postgres:13 
+
+
+docker run -it --name "airflow_mssql-airflow-webserver-1" -p 8080:8080 apache/airflow:2.6.3 webserver
+
+docker run -it --name "airflow_mssql-airflow-scheduler-1"  apache/airflow:2.6.3 scheduler
+
+docker run -it --name "airflow_mssql-airflow-triggerer-1"  apache/airflow:2.6.3 triggerer
+
+
+https://pypi.org/project/pymssql/#files
+----------------tao moi truong---------
+1. docker compose up
+2. tao Dockerfile
+3. docker build -t apache/airflow:2.6.3 -f ./Dockerfile .
+4. xoa container 
+5. docker compose up -d
+6. tao variable/ connec string 
